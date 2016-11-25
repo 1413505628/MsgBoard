@@ -23,6 +23,8 @@
     $sql = "CREATE TABLE msg (
     id INT(10),
     name VARCHAR(30),
+    email VARCHAR(50),
+    ip VARCHAR(30),
     content VARCHAR(1000)
     )"; 
     mysqli_query($conn, $sql);
@@ -36,7 +38,7 @@
 
 
 <?php
-    $sql = "SELECT name,content FROM msg order by id desc";
+    $sql = "SELECT name,content,email FROM msg order by id desc";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0)
@@ -46,32 +48,29 @@
 <md-card>
 <md-card-title>
     <md-card-title-media>
-      <div class="md-media-sm card-media layout-row" layout="">
-        <md-icon>
-        <svg xmlns="http://www.w3.org/2000/svg" fit="" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" focusable="false"><g id="person"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"></path></g></svg>
-        </md-icon>
+      <div class="md-media-sm card-media layout-row" layout="" style="padding:10px">
+        <img style="border-radius: 9px;" src="http://cn.gravatar.com/avatar/<?php echo $row["email"]; ?>?s=256" height=100%>
       </div>
     </md-card-title-media>
     <md-card-title-text>
-      <span class="md-headline ng-binding"><code><?php echo $row["name"]?></code></span>
-      <span class="md-subhead description ng-binding"><code><?php echo $row["content"]; ?></code></span>
+      <span class="md-headline ng-binding"><?php echo $row["name"]?></span>
+      <span class="md-subhead description ng-binding"><?php echo $row["content"]; ?></span>
     </md-card-title-text>
   </md-card-title>
 </md-card>
         
             <?php
         }
-    
-    else
-        echo "<p style='margin:2px;padding:4px'>还没有留言……</p>";
 ?>
 
 <md-card>
   <md-content layout-padding>
-    <p style="margin:0px;">新的留言</p>
-    <form name="projectForm" action="insert.php" method="get" traget="_blank">
+    <p style="margin:0px;">新的留言</p><?php echo $row["name"]?>
+    <form name="projectForm" action="insert.php" method="get">
 
-      <md-input-container class="md-block">
+
+    <div layout="row">
+      <md-input-container class="md-block" flex="30">
         <label>Name</label>
         <input md-maxlength="15" required md-no-asterisk name="Name" ng-model="project.Name">
         <div ng-messages="projectForm.Name.$error">
@@ -79,6 +78,15 @@
           <div ng-message="md-maxlength">哪有这么长的名字……</div>
         </div>
       </md-input-container>
+      <md-input-container class="md-block" flex="70">
+        <label>Email</label>
+        <input md-maxlength="30" required md-no-asterisk name="Email" ng-model="project.Email">
+        <div ng-messages="projectForm.Email.$error">
+          <div ng-message="required">您要填一下自己的Email…….</div>
+          <div ng-message="md-maxlength">哪有这么长的Email……</div>
+        </div>
+      </md-input-container>
+    </div>
 
       <md-input-container class="md-block">
           <label>Content</label>

@@ -4,7 +4,7 @@
 
 前端使用了[Angular Material Design](https://github.com/angular/material).
 
-![Demo](http://i1.piimg.com/567571/3909d886bafffe1b.png)
+![Demo](http://p1.bqimg.com/567571/da7712fe4ec7eb12.png)
 
 ## 进程 (历史的进程?)
 
@@ -12,7 +12,7 @@
 * [x] 美化UI
 * [x] 解决掉XSS漏洞
 * [x] 解决掉sql注入漏洞
-* [ ] 基于Gravatar实现用户头像
+* [x] 基于Gravatar实现用户头像
 * [ ] 提供简易后台（查看访客IP等）
 * [ ] 进一步美化UI
 

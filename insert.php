@@ -2,25 +2,18 @@
     window.location.href="./"; 
 </script>
 
+
 <?php
 
-    function check_input($value)
-    {
-        if (get_magic_quotes_gpc())
-            $value = stripslashes($value);
-
-        if (!is_numeric($value))
-            $value = "'" . mysql_real_escape_string($value) . "'";
-        
-        return $value;
-    }
-
     require("db.php");
+    $conn = mysqli_connect($host,$username,$password,"board");
+    
 
-    $Name=check_input($_GET['Name']);
-    $Cont=check_input($_GET['Cont']);
+    $Name=mysqli_real_escape_string($conn,$_GET['Name']);
+    $Cont=mysqli_real_escape_string($conn,$_GET['Cont']);
     // for SQL
 
+    $Email=md5(strtolower(trim($_GET['Email'])));
     $Time=time();
 
     // echo $Name." : ".$Cont;
@@ -29,9 +22,9 @@
     $Cont = htmlspecialchars($Cont);
     // for XSS
     
-    $conn = mysqli_connect($host,$username,$password,"board");
+    
 
-    $sql = "INSERT INTO msg (id,name,content) VALUES (".$Time.",'".$Name."','".$Cont."')";
+    $sql = "INSERT INTO msg (id,name,content,email) VALUES (".$Time.",'".$Name."','".$Cont."','".$Email."')";
 
     echo $sql;
 
@@ -42,5 +35,3 @@
         echo "<br>Fuck!";
     
 ?>
-
-
