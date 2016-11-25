@@ -53,8 +53,8 @@
       </div>
     </md-card-title-media>
     <md-card-title-text>
-      <span class="md-headline ng-binding"><?php echo $row["name"]?></span>
-      <span class="md-subhead description ng-binding"><?php echo $row["content"]; ?></span>
+      <span class="md-headline ng-binding"><code><?php echo $row["name"]?></code></span>
+      <span class="md-subhead description ng-binding"><code><?php echo $row["content"]; ?></code></span>
     </md-card-title-text>
   </md-card-title>
 </md-card>
