@@ -4,10 +4,23 @@
 
 <?php
 
+    function check_input($value)
+    {
+        if (get_magic_quotes_gpc())
+            $value = stripslashes($value);
+
+        if (!is_numeric($value))
+            $value = "'" . mysql_real_escape_string($value) . "'";
+        
+        return $value;
+    }
+
     require("db.php");
 
-    $Name=$_GET['Name'];
-    $Cont=$_GET['Cont'];
+    $Name=check_input($_GET['Name']);
+    $Cont=check_input($_GET['Cont']);
+    // for SQL
+
     $Time=time();
 
     // echo $Name." : ".$Cont;
