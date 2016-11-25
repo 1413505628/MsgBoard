@@ -4,6 +4,8 @@
 
 前端使用了[Angular Material Design](https://github.com/angular/material).
 
+![Demo](http://p1.bqimg.com/567571/f094e1a10cedfa5e.png)
+
 ## 进程 (历史的进程?)
 
 * [x] 完成主体的查询和插入代码
