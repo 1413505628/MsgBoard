@@ -53,8 +53,12 @@
       </div>
     </md-card-title-media>
     <md-card-title-text>
-      <span class="md-headline ng-binding"><?php echo $row["name"]?></span>
-      <span class="md-subhead description ng-binding"><?php echo $row["content"]; ?></span>
+      <span class="md-headline ng-binding" style="word-break:break-all;">
+        <?php echo $row["name"]?>
+      </span>
+      <span class="md-subhead description ng-binding" style="word-break:break-all;">
+        <?php echo $row["content"]; ?>
+      </span>
     </md-card-title-text>
   </md-card-title>
 </md-card>
@@ -72,29 +76,30 @@
     <div layout="row">
       <md-input-container class="md-block" flex="30">
         <label>Name</label>
-        <input md-maxlength="15" required md-no-asterisk name="Name" ng-model="project.Name">
+        <input required md-no-asterisk name="Name" ng-model="project.Name">
         <div ng-messages="projectForm.Name.$error">
           <div ng-message="required">您要填一下自己的名字…….</div>
-          <div ng-message="md-maxlength">哪有这么长的名字……</div>
         </div>
       </md-input-container>
       <md-input-container class="md-block" flex="70">
         <label>Email</label>
-        <input md-maxlength="30" required md-no-asterisk name="Email" ng-model="project.Email">
+        <input required md-no-asterisk name="Email" ng-model="project.Email">
         <div ng-messages="projectForm.Email.$error">
           <div ng-message="required">您要填一下自己的Email…….</div>
-          <div ng-message="md-maxlength">哪有这么长的Email……</div>
         </div>
       </md-input-container>
     </div>
 
       <md-input-container class="md-block">
           <label>Content</label>
-            <textarea name="Cont" ng-model="user.biography" md-maxlength="150" rows="5" md-select-on-focus></textarea>
+            <textarea name="Cont" ng-model="user.biography" required  rows="5" md-select-on-focus ng-model="project.Cont"></textarea>
+            <div ng-messages="projectForm.Cont.$error">
+                <div ng-message="required">您要说几句话吧…….</div>
+            </div>
         </md-input-container>
 
       <md-button class="md-raised" type="submit" style="float:right; margin:20px">Submit!</md-button>
-
+      
     </form>
   </md-content>
 </md-card>
